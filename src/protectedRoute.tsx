@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { Auth } from "aws-amplify";
-import { RouteComponentProps } from "react-router-dom";
 
 interface Props {
   history: string[];

@@ -15,11 +15,11 @@ export default function Button({
 }
 
 // Forces a nested style to be a CSSProperties
-interface StyleButton {
+export interface IStyles {
   [Key: string]: React.CSSProperties;
 }
 
-const styles: StyleButton = {
+const styles: IStyles = {
   button: {
     backgroundColor: "#006bfc",
     color: "white",
