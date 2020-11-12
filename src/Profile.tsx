@@ -8,13 +8,18 @@ function Profile() {
   const [user, setUser] = useState<IIntialState | null>(null);
 
   useEffect(() => {
+    // Need to perform a clean up function when signing out
+    let mounted = true;
     checkUser();
     Hub.listen("auth", data => {
       const { payload } = data;
-      if (payload.event === "signOut") {
+      if (payload.event === "signOut" && mounted) {
         setUser(null);
       }
     });
+    return () => {
+      mounted = false;
+    };
   }, []);
 
   async function checkUser() {
