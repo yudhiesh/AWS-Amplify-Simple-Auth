@@ -9,16 +9,15 @@ function Profile() {
 
   useEffect(() => {
     // Need to perform a clean up function when signing out
-    let mounted = true;
     checkUser();
     Hub.listen("auth", data => {
       const { payload } = data;
-      if (payload.event === "signOut" && mounted) {
+      if (payload.event === "signOut") {
         setUser(null);
       }
     });
     return () => {
-      mounted = false;
+      Hub.remove("auth", signOut);
     };
   }, []);
 
